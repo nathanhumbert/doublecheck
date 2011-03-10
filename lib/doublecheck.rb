@@ -1,3 +1,5 @@
 module DoubleCheck
-  require 'doublecheck/sitemap'
+  require 'rubygems'
+  require 'sitemap'
+  require 'test_url'
 end

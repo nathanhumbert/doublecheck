@@ -11,12 +11,13 @@ Gem::Specification.new do |spec|
   spec.email = ['nathan.humbert@gmail.com']
   spec.executables << 'doublecheck'
   spec.files = [
-    'README',
+    'README.markdown',
     'MIT_LICENSE',
   ]
   spec.files += FileList['lib/**/*.rb', 'bin/*']
   spec.test_files = FileList['tests/**/*.rb']
   spec.license = 'MIT'
+  spec.add_dependency('nokogiri', '>= 1.4.3.1')
   spec.add_development_dependency('fakeweb')
 
 end

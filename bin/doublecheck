@@ -1,1 +1,13 @@
 #!/usr/bin/env ruby
+
+require 'doublecheck'
+
+if ARGV[0].nil?
+  puts "USAGE: doublecheck http://example.com/sitemap.xml"
+else
+  sitemap = DoubleCheck::Sitemap.new(ARGV[0])
+  sitemap.urls.each do |url|
+    test_url = DoubleCheck::TestUrl.new(url)
+    test_url.test
+  end
+end
