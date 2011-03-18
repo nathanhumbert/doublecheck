@@ -1,4 +1,4 @@
-class DoubleCheck::TestUrl
+class DoubleCheck::CheckUrl
   require 'uri'
   def initialize(url)
     @url = URI.parse(url)
