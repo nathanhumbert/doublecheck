@@ -9,14 +9,12 @@ class CheckUrlTest < Test::Unit::TestCase
     FakeWeb.register_uri(:get, 'http://www.example.com/foo', :status => ['404', 'Not Found'])
   end
 
-  def test_initialize
-    test_url = DoubleCheck::CheckUrl.new('http://www.example.com/')
-    assert_equal URI.parse('http://www.example.com/'), test_url.instance_variable_get(:@url)
-  end
 
-  def test_make_request
-    test_url = DoubleCheck::CheckUrl.new('http://www.example.com/')
-    assert_equal @body, test_url.make_request.body
+  def test_get_response
+
+    response = DoubleCheck::CheckUrl.get_response('http://www.example.com/')
+    assert_equal '200', response.code
+    assert_equal @body, response.body
   end
 
 end

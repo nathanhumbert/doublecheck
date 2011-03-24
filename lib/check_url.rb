@@ -1,17 +1,10 @@
 class DoubleCheck::CheckUrl
   require 'uri'
-  def initialize(url)
-    @url = URI.parse(url)
-  end
 
-  def test
-    response = make_request 
-    puts 'HTTP code: ' + response.code + ' for ' + @url.host + @url.path
-  end
-
-  def make_request
-    response = Net::HTTP.start(@url.host, @url.port) do |http|
-      http.get(@url.path)
+  def self.get_response(url)
+    uri = URI.parse(url)
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
+      http.get(uri.path)
     end
   end
 end
