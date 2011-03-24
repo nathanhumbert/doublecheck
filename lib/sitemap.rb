@@ -7,19 +7,11 @@ class DoubleCheck::Sitemap
     @data = {}
   end
 
-  def urls
-    doc = Nokogiri::XML(open(@sitemap_url))
-    urls = []
-    doc.css('loc').each do |url|
-      urls.push(url.content)
-    end
-    return urls
-  end
-
   def process
     doc = Nokogiri::XML(open(@sitemap_url))
     doc.css('loc').each do |url|
-      response = DoubleCheck::CheckUrl.get_response(url)
+      response = DoubleCheck::CheckUrl.get_response(url.content)
+      record_result(url.content, response)
     end
   end
 
@@ -29,6 +21,10 @@ class DoubleCheck::Sitemap
     else
       @data[response.code].push(url)
     end 
+  end
+
+  def data
+    return @data
   end
   
 end

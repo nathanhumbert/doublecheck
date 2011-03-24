@@ -6,8 +6,13 @@ if ARGV[0].nil?
   puts "USAGE: doublecheck http://example.com/sitemap.xml"
 else
   sitemap = DoubleCheck::Sitemap.new(ARGV[0])
-  sitemap.urls.each do |url|
-    test_url = DoubleCheck::CheckUrl.new(url)
-    test_url.test
+  sitemap.process
+  data = sitemap.data
+  data.each do |code, urls|
+    puts "Status Code: #{code}"
+    puts "#{urls.size} urls"
+    urls.each do |url|
+      puts "\t#{url}"
+    end 
   end
 end

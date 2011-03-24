@@ -11,7 +11,6 @@ class CheckUrlTest < Test::Unit::TestCase
 
 
   def test_get_response
-
     response = DoubleCheck::CheckUrl.get_response('http://www.example.com/')
     assert_equal '200', response.code
     assert_equal @body, response.body
