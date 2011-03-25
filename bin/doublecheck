@@ -1,15 +1,16 @@
 #!/usr/bin/env ruby
 
 require 'doublecheck'
+require 'doublecheck_command_line'
 
 if ARGV[0].nil?
   puts "USAGE: doublecheck http://example.com/sitemap.xml"
 else
-  sitemap = DoubleCheck::Sitemap.new(ARGV[0])
+  sitemap = DoubleCheck::CommandLine.new(ARGV[0])
   sitemap.process
   data = sitemap.data
   data.each do |code, urls|
-    puts "Status Code: #{code}"
+    puts "\nStatus Code: #{code}"
     puts "#{urls.size} urls"
     urls.each do |url|
       puts "\t#{url}"
