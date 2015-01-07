@@ -20,7 +20,7 @@ class SitemapTest < Test::Unit::TestCase
     setup
     data = {}
     assert_equal data, @sitemap.instance_variable_get(:@data)
-  end 
+  end
 
   def test_process_puts_correct_data_in_data_instance_variable
     setup
@@ -34,7 +34,7 @@ class SitemapTest < Test::Unit::TestCase
     response = mock()
     response.stubs(:code).returns('100')
     @sitemap.record_result('test', response)
-    data = {'100' => ['test']} 
+    data = {'100' => ['test']}
     assert_equal data, @sitemap.instance_variable_get(:@data)
   end
 
